@@ -1,7 +1,7 @@
 # shopcommerce
 Framework Admin &amp; Client
 
-# What is Thiis
+# What is?
 This is just a demostration script of one can do with php and build a powerful tool, loot of work still to be done
 
 # credits
