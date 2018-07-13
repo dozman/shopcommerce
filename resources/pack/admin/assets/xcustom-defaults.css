@@ -1,0 +1,18 @@
+@CHARSET "ISO-8859-1";
+.xcustom-bg-body { 
+    /* The image used */
+    background-color: #FFFAF0;
+}
+input[required="Y"]{
+	border-left:3px red solid;
+}
+.notice-error{
+	color:red;
+	padding:10px;
+	font-weight:bolder;
+}
+.notice-success{
+	color:green;
+	padding:10px;
+	font-weight:bolder;
+}

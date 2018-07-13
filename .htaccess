@@ -1,0 +1,7 @@
+# @package 	Bulk Mailer
+# @author 	Peter Ramokone
+
+# take me to public
+RewriteEngine on
+#RewriteRule ^$ /public/ [L,R=301]
+RewriteRule ^(.*)$ public/ [L,QSA]

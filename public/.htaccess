@@ -1,0 +1,141 @@
+# @package 		XCustom htaccess
+# @author 		Peter Ramokone
+
+# htaccess configuration
+Options -Indexes
+
+# Bug fix
+# This stops screen flicker in IE (mostly related to version 6)
+BrowserMatch "MSIE" brokenvary=1
+BrowserMatch "Mozilla/4.[0-9]{2}" brokenvary=1
+BrowserMatch "Opera" !brokenvary
+SetEnvIf brokenvary 1 force-no-vary
+
+# By setting a cache it should assist in speeding up the site and correcting
+<IfModule mod_expires.c>
+# Enable expirations
+    ExpiresActive On
+# Syntax: ExpiresByType MIME-type <code>seconds
+#         <code> M (modifided) A (access)
+# Expire GIF / JPEG / PNG images after a month in the browser cache
+    ExpiresByType image/gif A2592000
+    ExpiresByType image/jpeg A2592000
+    ExpiresByType image/png A2592000
+</IfModule>
+# Bug fix end
+
+# File Rules
+# Explicitly disallow access to the config page
+# These files are used as templates
+<Files ~ "\.(ini|form|tpl|template|frm|lbl|xml)$">
+    Deny from all
+</Files>
+
+# PHP Engine rules
+# php_value memory_limit "32M" 
+
+# Modrewrite Rules
+RewriteEngine On
+
+# Prevent access to the .htaccess and .htpasswd files
+RewriteRule ^\.htaccess$												-											[F]
+RewriteRule ^\.htpasswd$												-											[F]
+
+# Explicity bypass certain urls
+# RewriteCond %{REQUEST_URI}         ^/.*   [OR]
+RewriteCond %{REQUEST_FILENAME}        -f      [OR]
+RewriteCond %{REQUEST_FILENAME}        -d
+RewriteRule ^(.+)                  -       [PT,L]
+
+# Explicity bypass certain url
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# 	--- 	Client Error	---
+# 400 - Bad Request
+ErrorDocument 400 ./index.php
+
+# 401 - Unauthorized
+ErrorDocument 401 ./index.php
+
+# 402 - Payment Required
+ErrorDocument 402 ./index.php
+
+# 403 - Forbidden
+ErrorDocument 403 ./index.php
+
+# 405 - Method Not Allowed
+ErrorDocument 405 ./index.php
+
+# 406 - Not Acceptable
+ErrorDocument 406 ./index.php
+
+# 407 - Proxy Authentication Required
+ErrorDocument 407 ./index.php
+
+# 408 - Request Timeout
+ErrorDocument 408 ./index.php
+
+# 409 - Conflict
+ErrorDocument 409 ./index.php
+
+# 410 - Gone
+ErrorDocument 410 ./index.php
+
+# 411 - Length Required
+ErrorDocument 411 ./index.php
+
+# 412 - Precondition Failed
+ErrorDocument 412 ./index.php
+
+# 413 - Request Entity Too Large
+ErrorDocument 413 ./index.php
+
+# 414 - Request-URI Too Long
+ErrorDocument 414 ./index.php
+
+# 415 - Unsupported Media Type
+ErrorDocument 415 ./index.php
+
+# 416 - Requested Range Not Satisfiable
+ErrorDocument 416 ./index.php
+
+# 417 - Expectation Failed
+ErrorDocument 417 ./index.php
+
+# 422 - Unprocessable Entity
+ErrorDocument 422 ./index.php
+
+# 423 - Locked
+ErrorDocument 423 ./index.php
+
+# 424 - Failed Dependency
+ErrorDocument 424 ./index.php
+
+# 425 ---- No code		---- will not be used
+
+# 426 - Upgrade Required
+ErrorDocument 426 ./index.php
+
+# 	--- Server Error	---
+
+# 500 - Internal Server Error
+ErrorDocument 500 ./index.php
+
+# 501 - Not Implemented
+ErrorDocument 501 ./index.php
+
+# 502 - Bad Gateway
+ErrorDocument 502 ./index.php
+
+# 503 - Service Unavailable
+ErrorDocument 503 ./index.php
+
+# 504 - Gateway Timeout
+ErrorDocument 504 ./index.php
+
+# 505 - HTTP Version Not Supported
+ErrorDocument 505 ./index.php
+
+# 404 errors & FTP error 425 will be trapped here as well
+RewriteRule !\.(js|ico|gif|jpg|png|css)$ 	./index.php

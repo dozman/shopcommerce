@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1"?>	
+<database>
+	<table>
+		<name>status</name>
+		<author>Peter Ramokone</author>
+	</table>
+	<structure>
+		<field type="int" length="3">id</field>
+		<field type="string" length="10">name</field>
+		<field type="string" length="20">description</field>
+	</structure>
+	<records>
+		<record>
+			<field name="id">1</field>
+			<field name="name">active</field>
+			<field name="description">Active</field>
+		</record>
+		<record>
+			<field name="id">2</field>
+			<field name="name">deactivated</field>
+			<field name="description">Deactivated</field>
+		</record>
+		<record>
+			<field name="id">3</field>
+			<field name="name">deleted</field>
+			<field name="description">Deleted</field>
+		</record>
+		<record>
+			<field name="id">4</field>
+			<field name="name">pending</field>
+			<field name="description">Pending</field>
+		</record>
+		<record>
+			<field name="id">5</field>
+			<field name="name">rejected</field>
+			<field name="description">rejected</field>
+		</record>
+	</records>
+</database>
